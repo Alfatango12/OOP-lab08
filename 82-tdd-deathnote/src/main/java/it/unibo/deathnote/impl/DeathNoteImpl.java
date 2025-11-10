@@ -2,13 +2,17 @@ package it.unibo.deathnote.impl;
 
 import it.unibo.deathnote.api.DeathNote;
 
-public class DeathNoteImpl implements DeathNote {
+/*
+ * Implementation of the interface {@link DeathNote}
+ */
+public final class DeathNoteImpl implements DeathNote {
     private static final int RULE_OFFSET = 1;
+
     @Override
     /*
      * {@inheritDoc}
      */
-    public String getRule(int ruleNumber) {
+    public String getRule(final int ruleNumber) {
         if (ruleNumber <= 0) {
             throw new IllegalArgumentException("The argument must be a number greater than 0");
         }
@@ -22,7 +26,7 @@ public class DeathNoteImpl implements DeathNote {
     /*
      * {@inheritDoc}
      */
-    public void writeName(String name) {
+    public void writeName(final String name) {
         throw new UnsupportedOperationException("Unimplemented method 'writeName'");
     }
 
@@ -30,7 +34,7 @@ public class DeathNoteImpl implements DeathNote {
     /*
      * {@inheritDoc}
      */
-    public boolean writeDeathCause(String cause) {
+    public boolean writeDeathCause(final String cause) {
         throw new UnsupportedOperationException("Unimplemented method 'writeDeathCause'");
     }
 
@@ -38,7 +42,7 @@ public class DeathNoteImpl implements DeathNote {
     /*
      * {@inheritDoc}
      */
-    public boolean writeDetails(String details) {
+    public boolean writeDetails(final String details) {
         throw new UnsupportedOperationException("Unimplemented method 'writeDetails'");
     }
 
@@ -46,7 +50,7 @@ public class DeathNoteImpl implements DeathNote {
     /*
      * {@inheritDoc}
      */
-    public String getDeathCause(String name) {
+    public String getDeathCause(final String name) {
         throw new UnsupportedOperationException("Unimplemented method 'getDeathCause'");
     }
 
@@ -54,7 +58,7 @@ public class DeathNoteImpl implements DeathNote {
     /*
      * {@inheritDoc}
      */
-    public String getDeathDetails(String name) {
+    public String getDeathDetails(final String name) {
         throw new UnsupportedOperationException("Unimplemented method 'getDeathDetails'");
     }
 
@@ -62,7 +66,7 @@ public class DeathNoteImpl implements DeathNote {
     /*
      * {@inheritDoc}
      */
-    public boolean isNameWritten(String name) {
+    public boolean isNameWritten(final String name) {
         throw new UnsupportedOperationException("Unimplemented method 'isNameWritten'");
     }
 }
