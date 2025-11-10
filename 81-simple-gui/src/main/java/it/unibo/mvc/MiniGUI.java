@@ -4,6 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -34,6 +35,7 @@ public class MiniGUI {
         final JPanel centerPanel = new JPanel();
         canvas.setLayout(new BorderLayout());
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
+        canvas.add(centerPanel, BorderLayout.CENTER);
         final JButton write = new JButton("Print a random number on standard output");
         centerPanel.add(write, BorderLayout.CENTER);
         frame.setContentPane(canvas);
