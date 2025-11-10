@@ -3,7 +3,7 @@ package it.unibo.deathnote.impl;
 import it.unibo.deathnote.api.DeathNote;
 
 public class DeathNoteImpl implements DeathNote {
-
+    private static final int RULE_OFFSET = 1;
     @Override
     /*
      * {@inheritDoc}
@@ -14,7 +14,7 @@ public class DeathNoteImpl implements DeathNote {
         }
 
         else {
-            return RULES.get(ruleNumber);
+            return RULES.get(ruleNumber - RULE_OFFSET);
         }
     }
 
