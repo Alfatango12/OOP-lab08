@@ -43,6 +43,7 @@ public class MiniGUI {
         centerPanel.add(write, BorderLayout.CENTER);
 
         final JLabel resultLabel = new JLabel("Result");
+        canvas.add(resultLabel, BorderLayout.NORTH);
 
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
