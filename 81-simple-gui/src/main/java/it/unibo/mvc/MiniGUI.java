@@ -3,8 +3,8 @@ package it.unibo.mvc;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -34,28 +34,30 @@ public class MiniGUI {
     public MiniGUI() {
         final JPanel canvas = new JPanel();
         final JPanel centerPanel = new JPanel();
-
         canvas.setLayout(new BorderLayout());
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
-
         canvas.add(centerPanel, BorderLayout.CENTER);
         final JButton write = new JButton("Print a random number on standard output");
         centerPanel.add(write, BorderLayout.CENTER);
-
-        final JLabel resultLabel = new JLabel("Result");
+        final String resutlLabelText = "Result: ";
+        final var resultLabel = new JTextField(resutlLabelText);
         canvas.add(resultLabel, BorderLayout.NORTH);
-
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
          * Handlers
          */
-        write.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                System.out.println(randomGenerator.nextInt());
+        write.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    final int randonNum = randomGenerator.nextInt();
+                    System.out.println(randonNum); //NOPMD
+                    // Required by the exercise
+                    resultLabel.setText(resutlLabelText + randonNum);
+                }
             }
-        });
+        );
     }
 
     private void display() {
