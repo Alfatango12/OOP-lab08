@@ -3,6 +3,7 @@ package it.unibo.mvc;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
@@ -33,11 +34,16 @@ public class MiniGUI {
     public MiniGUI() {
         final JPanel canvas = new JPanel();
         final JPanel centerPanel = new JPanel();
+
         canvas.setLayout(new BorderLayout());
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.X_AXIS));
+
         canvas.add(centerPanel, BorderLayout.CENTER);
         final JButton write = new JButton("Print a random number on standard output");
         centerPanel.add(write, BorderLayout.CENTER);
+
+        final JLabel resultLabel = new JLabel("Result");
+
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
