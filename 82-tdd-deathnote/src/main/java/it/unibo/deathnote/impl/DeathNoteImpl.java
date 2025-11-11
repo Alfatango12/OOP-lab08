@@ -109,7 +109,11 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public String getDeathDetails(final String name) {
-        throw new UnsupportedOperationException("Unimplemented method 'getDeathDetails'");
+        if (!isNameWritten(name)) {
+            throw new IllegalArgumentException("The name is not present in the deathNote");
+        }
+
+        return deathNote.get(name).getDetails();
     }
 
     @Override
