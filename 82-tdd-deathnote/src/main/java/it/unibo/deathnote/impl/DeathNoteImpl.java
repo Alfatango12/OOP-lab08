@@ -13,8 +13,8 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public String getRule(final int ruleNumber) {
-        if (ruleNumber <= 0) {
-            throw new IllegalArgumentException("The argument must be a number greater than 0");
+        if (ruleNumber <= 0 || ruleNumber >= DeathNote.RULES.size() + RULE_OFFSET) {
+            throw new IllegalArgumentException("The argument must be a number greater than 0 and lower than the list size + " + RULE_OFFSET);
         }
 
         else {
