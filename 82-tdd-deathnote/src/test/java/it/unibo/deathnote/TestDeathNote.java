@@ -24,7 +24,7 @@ class TestDeathNote {
     private static final String HUMAN_NAME = "Gianfranco Spiriponzi";
     private static final String HUMAN_NAME_B = "Gesualdo Stiripaldo";
     private static final String DEATH_CAUSE = "Karting accident";
-    private static final String DEFAULT_DEATH_CAUSE = "Heart attack";
+    private static final String DEFAULT_DEATH_CAUSE = "Heart Attack";
     private static final String DEATH_DETAILS = "Ran for too long";
     private DeathNoteImpl dn;
 
