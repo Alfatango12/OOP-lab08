@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -134,6 +136,8 @@ class TestDeathNote {
     }
 
     private String exceptionMessages(final Throwable e) {
-        return "Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace();
+        return "Managed " + e.getClass().getSimpleName() // Stampa il nome dell'eccezione
+           + " with message: " + e.getMessage() 
+           + " With stack trace: " + Arrays.toString(e.getStackTrace()); // <-- Correzione qui
     }
 } 
