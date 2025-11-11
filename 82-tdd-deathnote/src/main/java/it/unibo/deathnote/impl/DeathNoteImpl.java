@@ -47,7 +47,8 @@ public final class DeathNoteImpl implements DeathNote {
     @Override
     public void writeName(final String name) {
         if (name == null) {
-            throw new NullPointerException("The name in input is NULL");
+            throw new NullPointerException("The name in input is NULL"); //NOPMD
+            // The exercise explicitly asks to throw a NPE
         } else if (EMPTY_STRING.equals(name)) {
             System.err.println("Cannot insert an empty string, non a valid name"); //NOPMD
         } else {
