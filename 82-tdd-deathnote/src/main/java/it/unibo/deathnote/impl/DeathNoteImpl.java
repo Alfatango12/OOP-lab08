@@ -69,4 +69,33 @@ public final class DeathNoteImpl implements DeathNote {
     public boolean isNameWritten(final String name) {
         throw new UnsupportedOperationException("Unimplemented method 'isNameWritten'");
     }
+
+    public class Death {
+        private static String DEFAULT_DEATH_CAUSE = "Heart Attack";
+        private static String EMPTY_STRING = "";
+
+        private String deathCause;
+        private String deathDetails;
+
+        public Death() {
+            deathCause = DEFAULT_DEATH_CAUSE;
+            deathDetails = EMPTY_STRING;
+        }
+
+        public String getDeathCause() {
+            return this.deathCause;
+        }
+
+        public String getDetails() {
+            return this.deathDetails;
+        }
+
+        public void setDeathCause(final String cause) {
+            this.deathCause = cause;
+        }
+
+        public void setDeathDetails(final String details) {
+            this.deathDetails = details;
+        }
+    }
 }
