@@ -15,7 +15,7 @@ public final class DeathNoteImpl implements DeathNote {
     private static final String EMPTY_STRING = "";
     private static final String WRITE_METHOD_ERROR = "There are no names in deathNote, or the parameter is NULL";
 
-    private Map<String, Death> deathNote;
+    private final Map<String, Death> deathNote;
     private String lastNameInserted;
     private long timeInMillis;
 
@@ -23,7 +23,7 @@ public final class DeathNoteImpl implements DeathNote {
      * 
      */
     public DeathNoteImpl() {
-        this.deathNote = new HashMap<String, Death>();
+        this.deathNote = new HashMap<>();
         this.lastNameInserted = "";
         this.timeInMillis = 0;
     }
@@ -33,8 +33,8 @@ public final class DeathNoteImpl implements DeathNote {
      */
     @Override
     public String getRule(final int ruleNumber) {
-        if (ruleNumber <= 0 || ruleNumber >= DeathNote.RULES.size() + RULE_OFFSET) {
-            throw new IllegalArgumentException("The argument must be a number from 1 to " + DeathNote.RULES.size());
+        if (ruleNumber <= 0 || ruleNumber >= RULES.size() + RULE_OFFSET) {
+            throw new IllegalArgumentException("The argument must be a number from 1 to " + RULES.size());
         } else {
             return RULES.get(ruleNumber - RULE_OFFSET);
         }
@@ -47,8 +47,8 @@ public final class DeathNoteImpl implements DeathNote {
     public void writeName(final String name) {
         if (name == null) {
             throw new NullPointerException("The name in input is NULL");
-        } else if (name.equals(EMPTY_STRING)) {
-            System.err.println("Cannot insert an empty string, non a valid name");
+        } else if (EMPTY_STRING.equals(name)) {
+            System.err.println("Cannot insert an empty string, non a valid name"); //NOPMD
         } else {
             this.deathNote.put(name, new Death());
             this.lastNameInserted = name;
@@ -124,10 +124,7 @@ public final class DeathNoteImpl implements DeathNote {
 
     private boolean checkTime(final long timeLimit) {
         final long currentTimeMillis = System.currentTimeMillis();
-        if ((currentTimeMillis - this.timeInMillis) <= timeLimit) {
-            return true;
-        }
-        return false;
+        return (currentTimeMillis - this.timeInMillis) <= timeLimit;
     }
 
     /**
@@ -144,7 +141,7 @@ public final class DeathNoteImpl implements DeathNote {
          */
         public Death() {
             this.deathCause = DEFAULT_DEATH_CAUSE;
-            this.deathDetails = DeathNoteImpl.EMPTY_STRING;
+            this.deathDetails = EMPTY_STRING;
         }
 
         /**

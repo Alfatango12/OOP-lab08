@@ -31,8 +31,7 @@ class TestDeathNote {
     private DeathNoteImpl dn;
 
     /**
-     * Function that create a new object {@link DeathNoteImpl}
-     * that will be used for all the tests
+     * Function that create a new object {@link DeathNoteImpl} that will be used for all the tests.
      */
     @BeforeEach
     public void setUp() {
@@ -86,7 +85,6 @@ class TestDeathNote {
     }
 
     /**
-     * 
      * @throws InterruptedException for the {@link Thread.sleep} function
      */
     @Test
@@ -101,20 +99,17 @@ class TestDeathNote {
             Thread.sleep(SHORT_SLEEP_TIME);
             assertFalse(dn.writeDeathCause(DEFAULT_DEATH_CAUSE));
             assertEquals(dn.getDeathCause(HUMAN_NAME_B), DEATH_CAUSE);
-        } catch (final IllegalStateException e) {
-            System.out.println(this.exceptionMessages(e));
-        } catch (final IllegalArgumentException e) {
-            System.out.println(this.exceptionMessages(e));
-        }
+        } catch (final IllegalStateException | IllegalArgumentException e) {
+            System.out.println(this.exceptionMessages(e)); //NOPMD
+        } 
     }
 
     /**
-     * 
      * @throws InterruptedException for the {@link Thread.sleep} function
      */
     @Test
-    void testDeathDetails() throws InterruptedException{
-        try {     
+    void testDeathDetails() throws InterruptedException {
+        try {
             dn.writeDetails(DEATH_DETAILS);
             // Test with human n1 (correct timing)
             dn.writeName(HUMAN_NAME);
@@ -127,13 +122,13 @@ class TestDeathNote {
             assertFalse(dn.writeDetails(DEATH_DETAILS));
             assertEquals(dn.getDeathDetails(HUMAN_NAME_B), EMPTY_STRING);
         } catch (final IllegalStateException e) {
-            System.out.println(this.exceptionMessages(e));
+            System.out.println(this.exceptionMessages(e)); //NOPMD
         }
     }
 
     private String exceptionMessages(final Throwable e) {
-        return "Managed " + e.getClass().getSimpleName() // Stampa il nome dell'eccezione
+        return "Managed " + e.getClass().getSimpleName()
            + " with message: " + e.getMessage() 
-           + " With stack trace: " + Arrays.toString(e.getStackTrace()); // <-- Correzione qui
+           + " With stack trace: " + Arrays.toString(e.getStackTrace());
     }
 } 
