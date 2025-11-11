@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.EmptyStackException;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +17,7 @@ import it.unibo.deathnote.api.DeathNote;
 import it.unibo.deathnote.impl.DeathNoteImpl;
 
 class TestDeathNote {
-    private static final int RULE_0 = 0;
-    private static final int NEG_RULE = -1;
+    private static final int[] WRONG_RULES = {0, -1, DeathNote.RULES.size() + 1}; 
     private static final long SHORT_SLEEP_TIME = 100;
     private static final long LONG_SLEEP_TIME = 6100;
     private static final String EMPTY_STRING = "";
@@ -41,13 +42,15 @@ class TestDeathNote {
      */
     @Test
     void testGetIllegalRule() {
-        try {
-            this.dn.getRule(RULE_0);
-            this.dn.getRule(NEG_RULE);
-        } catch (final IllegalArgumentException e) {
-            assertNotNull(e.getMessage());
-            assertNotEquals(e.getMessage(), EMPTY_STRING);
-        } 
+        for (int i : WRONG_RULES) {
+            try {
+                dn.getRule(i);
+                Assertions.fail("Expected IllegalArgumentException but none was thrown for " + i);
+            } catch (final IllegalArgumentException e) {
+                assertNotNull(e.getMessage());
+                assertNotEquals(e.getMessage(), EMPTY_STRING);
+            }
+        }
     }
 
     /**
