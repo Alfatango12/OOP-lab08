@@ -69,7 +69,8 @@ public final class DeathNoteImpl implements DeathNote {
         }
         
         if (checkTime(DEATH_MILLIS_TIME)) {
-            deathNote.get(lastNameInserted).setDeathCause(cause);
+            deathNote.get(this.lastNameInserted).setDeathCause(cause);
+            this.timeInMillis = System.currentTimeMillis();
             return true;
         }
         return false;
@@ -80,7 +81,15 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public boolean writeDetails(final String details) {
-        throw new UnsupportedOperationException("Unimplemented method 'writeDetails'");
+        if (this.lastNameInserted.equals(null) || details.equals(null)) {
+            throw new IllegalArgumentException("There are no names in deathNote, or the cause parameter is NULL"); //Note: this can be transformed in a function
+        }
+
+        if (checkTime(DEATH_MILLIS_TIME)) {
+            deathNote.get(this.lastNameInserted).setDeathDetails(details);
+            return true;
+        }
+        return false;
     }
 
     @Override
