@@ -83,7 +83,7 @@ class TestDeathNote {
             assertFalse(dn.isNameWritten(EMPTY_STRING));
 
         } catch (final NullPointerException e) {
-            System.out.println("Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+            System.out.println(this.exceptionMessages(e));
         }
     }
 
@@ -104,9 +104,9 @@ class TestDeathNote {
             assertFalse(dn.writeDeathCause(DEFAULT_DEATH_CAUSE));
             assertEquals(dn.getDeathCause(HUMAN_NAME_B), DEATH_CAUSE);
         } catch (final IllegalStateException e) {
-            System.out.println("Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+            System.out.println(this.exceptionMessages(e));
         } catch (final IllegalArgumentException e) {
-            System.out.println("Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+            System.out.println(this.exceptionMessages(e));
         }
     }
 
@@ -129,7 +129,11 @@ class TestDeathNote {
             assertFalse(dn.writeDetails(DEATH_DETAILS));
             assertEquals(dn.getDeathDetails(HUMAN_NAME_B), EMPTY_STRING);
         } catch (final IllegalStateException e) {
-            System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+            System.out.println(this.exceptionMessages(e));
         }
+    }
+
+    private String exceptionMessages(final Throwable e) {
+        return "Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace();
     }
 } 
