@@ -34,6 +34,7 @@ class TestDeathNote {
             this.dn.getRule(RULE_0);
             this.dn.getRule(NEG_RULE);
         } catch (final IllegalArgumentException e) {
+            assertNotNull(e.getMessage());
             assertNotEquals(e.getMessage(), EMPY_STRING);
         } 
     }
