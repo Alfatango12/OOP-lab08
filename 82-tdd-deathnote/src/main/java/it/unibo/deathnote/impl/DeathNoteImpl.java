@@ -85,7 +85,7 @@ public final class DeathNoteImpl implements DeathNote {
             throw new IllegalArgumentException("There are no names in deathNote, or the cause parameter is NULL"); //Note: this can be transformed in a function
         }
 
-        if (checkTime(DEATH_MILLIS_TIME)) {
+        if (checkTime(DETAILS_MILLIS_TIME)) {
             deathNote.get(this.lastNameInserted).setDeathDetails(details);
             return true;
         }
