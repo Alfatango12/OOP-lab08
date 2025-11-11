@@ -56,7 +56,10 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public boolean writeDeathCause(final String cause) {
-        throw new UnsupportedOperationException("Unimplemented method 'writeDeathCause'");
+        if (this.lastNameInserted.equals(null) || cause.equals(null)) {
+            throw new IllegalStateException("The are no names in deathNote, or the cause parameter is NULL");
+        }
+        
     }
 
     @Override
