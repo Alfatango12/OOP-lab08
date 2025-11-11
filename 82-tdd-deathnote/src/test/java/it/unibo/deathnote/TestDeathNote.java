@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 import it.unibo.deathnote.api.DeathNote;
 import it.unibo.deathnote.impl.DeathNoteImpl;
 
+/**
+ * 
+ */
 class TestDeathNote {
     private static final int[] WRONG_RULES = {0, -1, DeathNote.RULES.size() + 1}; 
     private static final long SHORT_SLEEP_TIME = 100;
@@ -25,11 +28,11 @@ class TestDeathNote {
     private static final String DEATH_DETAILS = "Ran for too long";
     private DeathNoteImpl dn;
 
-    @BeforeEach
-    /*
+    /**
      * Function that create a new object {@link DeathNoteImpl}
      * that will be used for all the tests
      */
+    @BeforeEach
     public void setUp() {
         this.dn = new DeathNoteImpl();
     }
@@ -39,7 +42,7 @@ class TestDeathNote {
      */
     @Test
     void testGetIllegalRule() {
-        for (int i : WRONG_RULES) {
+        for (final int i : WRONG_RULES) {
             try {
                 dn.getRule(i);
                 Assertions.fail("Expected IllegalArgumentException but none was thrown for " + i);
@@ -62,7 +65,7 @@ class TestDeathNote {
         }
     }
 
-    /*
+    /**
      * 
      */
     @Test
@@ -80,7 +83,7 @@ class TestDeathNote {
             assertFalse(dn.isNameWritten(EMPTY_STRING));
 
         } catch (final NullPointerException e) {
-            System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+            System.out.println("Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
         }
     }
 
@@ -101,9 +104,9 @@ class TestDeathNote {
             assertFalse(dn.writeDeathCause(DEFAULT_DEATH_CAUSE));
             assertEquals(dn.getDeathCause(HUMAN_NAME_B), DEATH_CAUSE);
         } catch (final IllegalStateException e) {
-            System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+            System.out.println("Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
         } catch (final IllegalArgumentException e) {
-            System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+            System.out.println("Managed " + e + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
         }
     }
 

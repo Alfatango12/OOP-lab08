@@ -13,6 +13,7 @@ public final class DeathNoteImpl implements DeathNote {
     private static final long DEATH_MILLIS_TIME = 40;
     private static final long DETAILS_MILLIS_TIME = 6000 + DEATH_MILLIS_TIME;
     private static final String EMPTY_STRING = "";
+    private static final String WRITE_METHOD_ERROR = "There are no names in deathNote, or the parameter is NULL";
 
     private Map<String, Death> deathNote;
     private String lastNameInserted;
@@ -33,8 +34,7 @@ public final class DeathNoteImpl implements DeathNote {
     @Override
     public String getRule(final int ruleNumber) {
         if (ruleNumber <= 0 || ruleNumber >= DeathNote.RULES.size() + RULE_OFFSET) {
-            final String message = "The argument must be a number greater than 0 and lower than the list size + " + RULE_OFFSET;
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("The argument must be a number from 1 to " + DeathNote.RULES.size());
         } else {
             return RULES.get(ruleNumber - RULE_OFFSET);
         }
@@ -63,7 +63,7 @@ public final class DeathNoteImpl implements DeathNote {
     @Override
     public boolean writeDeathCause(final String cause) {
         if (this.lastNameInserted == null || cause == null) {
-            throw new IllegalStateException("The are no names in deathNote, or the cause parameter is NULL");
+            throw new IllegalStateException(WRITE_METHOD_ERROR);
         }
 
         if (checkTime(DEATH_MILLIS_TIME)) {
@@ -80,8 +80,7 @@ public final class DeathNoteImpl implements DeathNote {
     @Override
     public boolean writeDetails(final String details) {
         if (this.lastNameInserted == null || details == null) {
-            final String message = "There are no names in deathNote, or the cause parameter is NULL";
-            throw new IllegalArgumentException(message); //Note: this can be transformed in a function
+            throw new IllegalArgumentException(WRITE_METHOD_ERROR);
         }
 
         if (checkTime(DETAILS_MILLIS_TIME)) {
