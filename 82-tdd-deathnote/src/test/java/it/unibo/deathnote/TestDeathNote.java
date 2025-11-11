@@ -17,12 +17,14 @@ import it.unibo.deathnote.impl.DeathNoteImpl;
 class TestDeathNote {
     private static final int RULE_0 = 0;
     private static final int NEG_RULE = -1;
-    private static final long sleepTime = 100;
-    private static final String EMPY_STRING = "";
-    private static final String humanName = "Gianfranco Spiriponzi";
-    private static final String humanNameB = "Gesualdo Stiripaldo";
-    private static final String deathCause = "Karting Accident";
-    private static final String defaultDeathCause = "Heart Attack";
+    private static final long SHORT_SLEEP_TIME = 100;
+    private static final long LONG_SLEEP_TIME = 6100;
+    private static final String EMPTY_STRING = "";
+    private static final String HUMAN_NAME = "Gianfranco Spiriponzi";
+    private static final String HUMAN_NAME_B = "Gesualdo Stiripaldo";
+    private static final String DEATH_CAUSE = "Karting accident";
+    private static final String DEFAULT_DEATH_CAUSE = "Heart attack";
+    private static final String DEATH_DETAILS = "Ran for too long";
     private DeathNoteImpl dn;
 
     @BeforeEach
@@ -44,7 +46,7 @@ class TestDeathNote {
             this.dn.getRule(NEG_RULE);
         } catch (final IllegalArgumentException e) {
             assertNotNull(e.getMessage());
-            assertNotEquals(e.getMessage(), EMPY_STRING);
+            assertNotEquals(e.getMessage(), EMPTY_STRING);
         } 
     }
 
@@ -56,7 +58,7 @@ class TestDeathNote {
         for (int i = 1; i <= DeathNote.RULES.size(); i++) {
             final String rule = dn.getRule(i);
             assertNotNull(rule);
-            assertNotEquals(rule, EMPY_STRING);
+            assertNotEquals(rule, EMPTY_STRING);
         }
     }
 
@@ -67,15 +69,15 @@ class TestDeathNote {
     void testHumanDeath() {
         try {
             // Verify insertion of a valid name
-            assertEquals(dn.isNameWritten(humanName), false);
-            dn.writeName(humanName);
-            assertEquals(dn.isNameWritten(humanName), true);
+            assertEquals(dn.isNameWritten(HUMAN_NAME), false);
+            dn.writeName(HUMAN_NAME);
+            assertEquals(dn.isNameWritten(HUMAN_NAME), true);
             // Verify that another name has been written
-            assertEquals(dn.isNameWritten(humanNameB), false);
+            assertEquals(dn.isNameWritten(HUMAN_NAME_B), false);
             // Verify insertion of empty string
-            assertEquals(dn.isNameWritten(EMPY_STRING), false);
-            dn.writeName(EMPY_STRING);
-            assertEquals(dn.isNameWritten(EMPY_STRING), false);
+            assertEquals(dn.isNameWritten(EMPTY_STRING), false);
+            dn.writeName(EMPTY_STRING);
+            assertEquals(dn.isNameWritten(EMPTY_STRING), false);
 
         } catch (final NullPointerException e) {
             System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
@@ -89,18 +91,41 @@ class TestDeathNote {
     @Test
     void testDeathCauseTiming() throws InterruptedException {
         try {
-            dn.writeDeathCause(deathCause);
-            dn.writeName(humanName);
-            assertEquals(dn.getDeathCause(humanName), defaultDeathCause);
-            dn.writeName(humanNameB);
-            assertTrue(dn.writeDeathCause(deathCause));
-            assertEquals(dn.getDeathCause(humanNameB), deathCause);
-            Thread.sleep(sleepTime);
-            assertFalse(dn.writeDeathCause(defaultDeathCause));
-            assertEquals(dn.getDeathCause(humanNameB), deathCause);
+            dn.writeDeathCause(DEATH_CAUSE);
+            dn.writeName(HUMAN_NAME);
+            assertEquals(dn.getDeathCause(HUMAN_NAME), DEFAULT_DEATH_CAUSE);
+            dn.writeName(HUMAN_NAME_B);
+            assertTrue(dn.writeDeathCause(DEATH_CAUSE));
+            assertEquals(dn.getDeathCause(HUMAN_NAME_B), DEATH_CAUSE);
+            Thread.sleep(SHORT_SLEEP_TIME);
+            assertFalse(dn.writeDeathCause(DEFAULT_DEATH_CAUSE));
+            assertEquals(dn.getDeathCause(HUMAN_NAME_B), DEATH_CAUSE);
         } catch (final IllegalStateException e) {
             System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
         } catch (final IllegalArgumentException e) {
+            System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
+        }
+    }
+
+    /**
+     * 
+     * @throws InterruptedException for the {@link Thread.sleep} function
+     */
+    @Test
+    void testDeathDetails() throws InterruptedException{
+        try {     
+            dn.writeDetails(DEATH_DETAILS);
+            // Test with human n1 (correct timing)
+            dn.writeName(HUMAN_NAME);
+            assertEquals(dn.getDeathDetails(HUMAN_NAME), EMPTY_STRING);
+            assertTrue(dn.writeDetails(DEATH_DETAILS));
+            assertEquals(dn.getDeathDetails(HUMAN_NAME), DEATH_DETAILS);
+            // Test with human number 2 (incorrect timing)
+            dn.writeName(HUMAN_NAME_B);
+            Thread.sleep(LONG_SLEEP_TIME);
+            assertFalse(dn.writeDetails(DEATH_DETAILS));
+            assertEquals(dn.getDeathDetails(HUMAN_NAME_B), EMPTY_STRING);
+        } catch (final IllegalStateException e) {
             System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
         }
     }
