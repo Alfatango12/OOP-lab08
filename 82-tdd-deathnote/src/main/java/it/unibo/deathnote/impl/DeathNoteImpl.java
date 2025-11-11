@@ -87,7 +87,7 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public boolean isNameWritten(final String name) {
-        throw new UnsupportedOperationException("Unimplemented method 'isNameWritten'");
+        return deathNote.containsKey(name);
     }
 
     public class Death {
