@@ -42,8 +42,8 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public void writeName(final String name) {
-        if (this.deathNote.keySet().size() == 0 || name.equals(null)) {
-            throw new IllegalStateException("No name present in the deathNote, or the name in input is NULL");
+        if (name.equals(null)) {
+            throw new IllegalArgumentException("No name present in the deathNote, or the name in input is NULL");
         }
 
         this.deathNote.put(name, new Death());
