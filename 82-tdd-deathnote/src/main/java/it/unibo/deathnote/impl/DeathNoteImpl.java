@@ -7,6 +7,8 @@ import it.unibo.deathnote.api.DeathNote;
  */
 public final class DeathNoteImpl implements DeathNote {
     private static final int RULE_OFFSET = 1;
+    private static float DEATH_MILLIS_TIME = 40;
+    private static float DETAILS_MILLIS_TIME = 6000 + DEATH_MILLIS_TIME;
 
     @Override
     /*
