@@ -12,6 +12,7 @@ public final class DeathNoteImpl implements DeathNote {
     private static final int RULE_OFFSET = 1;
     private static long DEATH_MILLIS_TIME = 40;
     private static long DETAILS_MILLIS_TIME = 6000 + DEATH_MILLIS_TIME;
+    private static String EMPTY_STRING = "";
 
     private Map<String, Death> deathNote;
     private String lastNameInserted;
@@ -46,9 +47,16 @@ public final class DeathNoteImpl implements DeathNote {
             throw new IllegalArgumentException("No name present in the deathNote, or the name in input is NULL");
         }
 
-        this.deathNote.put(name, new Death());
-        this.lastNameInserted = name;
-        this.timeInMillis = System.currentTimeMillis();
+        else if (name.equals(EMPTY_STRING)) {
+            System.err.println("Cannot insert an empty string, non a valid name");
+        }
+
+        else {
+            this.deathNote.put(name, new Death());
+            this.lastNameInserted = name;
+            this.timeInMillis = System.currentTimeMillis();
+        }
+        
     }
 
     @Override
