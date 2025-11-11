@@ -14,11 +14,13 @@ public final class DeathNoteImpl implements DeathNote {
     private static float DETAILS_MILLIS_TIME = 6000 + DEATH_MILLIS_TIME;
 
     private Map<String, Death> deathNote;
+    private String lastNameInserted;
     private int timeInMillis;
     
     public DeathNoteImpl() {
-        deathNote = new HashMap<String, Death>();
-        timeInMillis = 0;
+        this.deathNote = new HashMap<String, Death>();
+        this.lastNameInserted = "";
+        this.timeInMillis = 0;
     }
 
     @Override
