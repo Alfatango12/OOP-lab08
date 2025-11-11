@@ -46,7 +46,7 @@ public final class DeathNoteImpl implements DeathNote {
     @Override
     public void writeName(final String name) {
         if (name == null) {
-            throw new IllegalArgumentException("No name present in the deathNote, or the name in input is NULL");
+            throw new NullPointerException("The name in input is NULL");
         } else if (name.equals(EMPTY_STRING)) {
             System.err.println("Cannot insert an empty string, non a valid name");
         } else {
