@@ -43,7 +43,7 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public void writeName(final String name) {
-        if (name.equals(null)) {
+        if (name == null) {
             throw new IllegalArgumentException("No name present in the deathNote, or the name in input is NULL");
         }
 
@@ -64,7 +64,7 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public boolean writeDeathCause(final String cause) {
-        if (this.lastNameInserted.equals(null) || cause.equals(null)) {
+        if (this.lastNameInserted == null || cause ==  null) {
             throw new IllegalStateException("The are no names in deathNote, or the cause parameter is NULL");
         }
         
@@ -81,7 +81,7 @@ public final class DeathNoteImpl implements DeathNote {
      * {@inheritDoc}
      */
     public boolean writeDetails(final String details) {
-        if (this.lastNameInserted.equals(null) || details.equals(null)) {
+        if (this.lastNameInserted == null || details == null) {
             throw new IllegalArgumentException("There are no names in deathNote, or the cause parameter is NULL"); //Note: this can be transformed in a function
         }
 
