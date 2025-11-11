@@ -15,7 +15,7 @@ public final class DeathNoteImpl implements DeathNote {
 
     private Map<String, Death> deathNote;
     private String lastNameInserted;
-    private int timeInMillis;
+    private long timeInMillis;
     
     public DeathNoteImpl() {
         this.deathNote = new HashMap<String, Death>();
@@ -48,6 +48,7 @@ public final class DeathNoteImpl implements DeathNote {
 
         this.deathNote.put(name, new Death());
         this.lastNameInserted = name;
+        this.timeInMillis = System.currentTimeMillis();
     }
 
     @Override
