@@ -94,6 +94,14 @@ public final class DeathNoteImpl implements DeathNote {
         return deathNote.containsKey(name);
     }
 
+    private boolean checkTime(final long timeLimit) {
+        final long currentTimeMillis = System.currentTimeMillis();
+        if ((currentTimeMillis - this.timeInMillis) <= timeLimit) {
+            return true;
+        }
+        return false;
+    }
+
     public class Death {
         private static String DEFAULT_DEATH_CAUSE = "Heart Attack";
         private static String EMPTY_STRING = "";
