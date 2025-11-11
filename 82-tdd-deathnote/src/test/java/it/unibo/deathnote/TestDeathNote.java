@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.EmptyStackException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,7 @@ class TestDeathNote {
     private static final int RULE_0 = 0;
     private static final int NEG_RULE = -1;
     private static final String EMPY_STRING = "";
+    private static final String humanName = "Gianfranco";
     private DeathNoteImpl dn;
 
     @BeforeEach
@@ -54,4 +57,22 @@ class TestDeathNote {
     /*
      * 
      */
+    @Test
+    void testHumanDeath() {
+        try {
+            // Verify insertion of a valid name
+            assertEquals(dn.isNameWritten(humanName), false);
+            dn.writeName(humanName);
+            assertEquals(dn.isNameWritten(humanName), true);
+            // Verify insertion of empty string
+            assertEquals(dn.isNameWritten(EMPY_STRING), false);
+            dn.writeName(EMPY_STRING);
+            assertEquals(dn.isNameWritten(EMPY_STRING), false);
+
+        } catch (final NullPointerException e) {
+
+        } catch() {
+
+        }
+    }
 } 
