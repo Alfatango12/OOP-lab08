@@ -39,7 +39,7 @@ class TestDeathNote {
     }
 
     /**
-     * 
+     * Check that the index of rules out of range are not accepted.
      */
     @Test
     void testGetIllegalRule() {
@@ -55,7 +55,7 @@ class TestDeathNote {
     }
 
     /**
-     * 
+     * Check that all rules are not empty or null.
      */
     @Test
     void testNullRules() {
@@ -67,7 +67,7 @@ class TestDeathNote {
     }
 
     /**
-     * 
+     * Check that the name insertion and human death are executed correctly.
      */
     @Test
     void testHumanDeath() {
@@ -85,7 +85,9 @@ class TestDeathNote {
     }
 
     /**
-     * @throws InterruptedException for the {@link Thread.sleep} function
+     * Check that the death cause insertion is executed correctly.
+     * 
+     * @throws InterruptedException for the {@link Thread.sleep} function.
      */
     @Test
     void testDeathCauseTiming() throws InterruptedException {
@@ -105,7 +107,9 @@ class TestDeathNote {
     }
 
     /**
-     * @throws InterruptedException for the {@link Thread.sleep} function
+     * Check that the death details insertion is executed correctly.
+     * 
+     * @throws InterruptedException for the {@link Thread.sleep} function.
      */
     @Test
     void testDeathDetails() throws InterruptedException {

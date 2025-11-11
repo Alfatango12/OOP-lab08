@@ -20,7 +20,8 @@ public final class DeathNoteImpl implements DeathNote {
     private long timeInMillis;
 
     /**
-     * 
+     * Constructor of {@link DeathNoteImpl}.
+     * It doesn't take any input value, just initialize all fields to default values.
      */
     public DeathNoteImpl() {
         this.deathNote = new HashMap<>();
@@ -128,7 +129,8 @@ public final class DeathNoteImpl implements DeathNote {
     }
 
     /**
-     * 
+     * This class manages all the values associated with death.
+     * This way makes data more manageable in the {@link DeathNoteImpl} by using a map.
      */
     public class Death {
         private static final String DEFAULT_DEATH_CAUSE = "Heart Attack";
@@ -145,28 +147,28 @@ public final class DeathNoteImpl implements DeathNote {
         }
 
         /**
-         * @return d
+         * @return the death cause associated to the human name.
          */
         public String getDeathCause() {
             return this.deathCause;
         }
 
         /**
-         * @return d
+         * @return the death details associated to the human name.
          */
         public String getDetails() {
             return this.deathDetails;
         }
 
         /**
-         * @param d
+         * @param cause The cause of the human's death.
          */
         public void setDeathCause(final String cause) {
             this.deathCause = cause;
         }
 
         /**
-         * @param d
+         * @param details The details associated to the human's cause of death.
          */
         public void setDeathDetails(final String details) {
             this.deathDetails = details;
