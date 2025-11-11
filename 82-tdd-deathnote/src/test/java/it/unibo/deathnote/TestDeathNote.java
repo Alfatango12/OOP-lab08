@@ -16,7 +16,8 @@ class TestDeathNote {
     private static final int RULE_0 = 0;
     private static final int NEG_RULE = -1;
     private static final String EMPY_STRING = "";
-    private static final String humanName = "Gianfranco";
+    private static final String humanName = "Gianfranco Spiriponzi";
+    private static final String humanNameB = "Gesualdo Stiripaldo";
     private DeathNoteImpl dn;
 
     @BeforeEach
@@ -64,15 +65,15 @@ class TestDeathNote {
             assertEquals(dn.isNameWritten(humanName), false);
             dn.writeName(humanName);
             assertEquals(dn.isNameWritten(humanName), true);
+            // Verify that another name has been written
+            assertEquals(dn.isNameWritten(humanNameB), false);
             // Verify insertion of empty string
             assertEquals(dn.isNameWritten(EMPY_STRING), false);
             dn.writeName(EMPY_STRING);
             assertEquals(dn.isNameWritten(EMPY_STRING), false);
 
         } catch (final NullPointerException e) {
-
-        } catch() {
-
+            System.out.println("Correctly managed exception " + e.toString() + " with message: " + e.getMessage() + " With stack trace: " + e.getStackTrace());
         }
     }
 } 
