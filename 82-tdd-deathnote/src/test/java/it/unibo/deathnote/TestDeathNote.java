@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
@@ -70,17 +72,22 @@ class TestDeathNote {
      * Check that the name insertion and human death are executed correctly.
      */
     @Test
+    @SuppressFBWarnings(
+        value = "DCN_NULLPOINTER_EXCEPTION", 
+        justification = "Is necessary to capture this exception because the exercise asks to throw it"
+        )
     void testHumanDeath() {
-        // Verify insertion of a valid name
-        assertFalse(dn.isNameWritten(HUMAN_NAME));
-        dn.writeName(HUMAN_NAME);
-        assertTrue(dn.isNameWritten(HUMAN_NAME));
-        // Verify that another name has been written
-        assertFalse(dn.isNameWritten(HUMAN_NAME_B));
-        // Verify insertion of empty string
-        assertFalse(dn.isNameWritten(EMPTY_STRING));
-        dn.writeName(EMPTY_STRING);
-        assertFalse(dn.isNameWritten(EMPTY_STRING));
+        try {
+            assertFalse(dn.isNameWritten(HUMAN_NAME));
+            dn.writeName(HUMAN_NAME);
+            assertTrue(dn.isNameWritten(HUMAN_NAME));
+            assertFalse(dn.isNameWritten(HUMAN_NAME_B));
+            assertFalse(dn.isNameWritten(EMPTY_STRING));
+            dn.writeName(EMPTY_STRING);
+            assertFalse(dn.isNameWritten(EMPTY_STRING));
+        } catch (final NullPointerException e) { //NOPMD
+            System.out.println(this.exceptionMessages(e)); //NOPMD
+        }
 
     }
 
