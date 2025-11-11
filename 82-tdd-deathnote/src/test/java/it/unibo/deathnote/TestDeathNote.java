@@ -29,10 +29,11 @@ class TestDeathNote {
      * 
      */
     @Test
-    void testGetRuleZero() {
+    void testGetIllegalRule() {
         try {
             this.dn.getRule(RULE_0);
-        } catch (IllegalArgumentException e) {
+            this.dn.getRule(NEG_RULE);
+        } catch (final IllegalArgumentException e) {
             assertNotEquals(e.getMessage(), EMPY_STRING);
         } 
     }
@@ -41,21 +42,9 @@ class TestDeathNote {
      * 
      */
     @Test
-    void testGetNegativeRule() {
-        try {
-            this.dn.getRule(NEG_RULE);
-        } catch (IllegalArgumentException e) {
-            assertNotEquals(e.getMessage(), EMPY_STRING);
-        }
-    }
-
-    /**
-     * 
-     */
-    @Test
     void testNullRules() {
         for (int i = 1; i <= DeathNote.RULES.size(); i++) {
-            String rule = dn.getRule(i);
+            final String rule = dn.getRule(i);
             assertNotNull(rule);
             assertNotEquals(rule, EMPY_STRING);
         }
@@ -64,5 +53,4 @@ class TestDeathNote {
     /*
      * 
      */
-    
 } 
