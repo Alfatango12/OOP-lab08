@@ -72,21 +72,17 @@ class TestDeathNote {
      */
     @Test
     void testHumanDeath() {
-        try {
-            // Verify insertion of a valid name
-            assertFalse(dn.isNameWritten(HUMAN_NAME));
-            dn.writeName(HUMAN_NAME);
-            assertTrue(dn.isNameWritten(HUMAN_NAME));
-            // Verify that another name has been written
-            assertFalse(dn.isNameWritten(HUMAN_NAME_B));
-            // Verify insertion of empty string
-            assertFalse(dn.isNameWritten(EMPTY_STRING));
-            dn.writeName(EMPTY_STRING);
-            assertFalse(dn.isNameWritten(EMPTY_STRING));
+        // Verify insertion of a valid name
+        assertFalse(dn.isNameWritten(HUMAN_NAME));
+        dn.writeName(HUMAN_NAME);
+        assertTrue(dn.isNameWritten(HUMAN_NAME));
+        // Verify that another name has been written
+        assertFalse(dn.isNameWritten(HUMAN_NAME_B));
+        // Verify insertion of empty string
+        assertFalse(dn.isNameWritten(EMPTY_STRING));
+        dn.writeName(EMPTY_STRING);
+        assertFalse(dn.isNameWritten(EMPTY_STRING));
 
-        } catch (final NullPointerException e) {
-            System.out.println(this.exceptionMessages(e));
-        }
     }
 
     /**
