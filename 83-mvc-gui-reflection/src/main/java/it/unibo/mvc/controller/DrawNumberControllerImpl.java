@@ -68,5 +68,4 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
          */
         System.exit(0);
     }
-
 }
