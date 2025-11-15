@@ -1,5 +1,6 @@
 package it.unibo.mvc;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import it.unibo.mvc.api.DrawNumberController;
@@ -25,7 +26,15 @@ public final class LaunchApp {
      * @throws IllegalAccessException in case of reflection issues
      * @throws IllegalArgumentException in case of reflection issues
      */
-    public static void main(final String... args) throws Exception {
+    public static void main(final String... args) throws 
+    LinkageError, 
+    ExceptionInInitializerError,
+    ClassNotFoundException,
+    NoSuchMethodException,
+    IllegalAccessException,
+    InstantiationException,
+    InvocationTargetException,
+    ExceptionInInitializerError {
         final var model = new DrawNumberImpl();
         final DrawNumberController app = new DrawNumberControllerImpl(model);
 
