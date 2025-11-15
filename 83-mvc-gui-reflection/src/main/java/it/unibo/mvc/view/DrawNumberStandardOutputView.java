@@ -1,5 +1,6 @@
 package it.unibo.mvc.view;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.mvc.api.DrawNumberController;
 import it.unibo.mvc.api.DrawNumberView;
 import it.unibo.mvc.api.DrawResult;
@@ -20,6 +21,11 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
     }
 
     @Override
+    @SuppressFBWarnings(
+        value = "EI2", 
+        justification = "False Positive. The controller cannot be modified as it's a final class"
+            + " and has no direct methods to modify it's state"
+        )
     public void setController(final DrawNumberController observer) {
        this.controller = observer;
     }

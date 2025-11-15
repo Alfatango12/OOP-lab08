@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import static javax.swing.JOptionPane.showConfirmDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -91,6 +93,11 @@ public final class DrawNumberSwingView implements DrawNumberView {
     }
 
     @Override
+    @SuppressFBWarnings(
+        value = "EI2", 
+        justification = "False Positive. The controller cannot be modified as it's a final class"
+            + " and has no direct methods to modify it's state"
+        )
     public void setController(final DrawNumberController observer) {
         this.controller = observer;
     }
