@@ -13,7 +13,9 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
      * 
      */
     public DrawNumberStandardOutputView() {
-
+        /*
+         * The constructor doesn't need to initialize anything.
+         */
     }
 
     /**
@@ -21,7 +23,9 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
      */
     @Override
     public void setController(final DrawNumberController observer) {
-
+        /*
+         * There is no controller since this view is output only.
+         */
     }
 
     /**
@@ -29,7 +33,9 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
      */
     @Override
     public void start() {
-
+        /*
+         * The output from terminal is always avaliable without external objects.
+         */
     }
 
     /**
