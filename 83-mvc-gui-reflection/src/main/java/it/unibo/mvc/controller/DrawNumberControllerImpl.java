@@ -17,7 +17,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 public final class DrawNumberControllerImpl implements DrawNumberController {
 
     private final DrawNumber model;
-    private final List<DrawNumberView> views;
+    private final List<DrawNumberView> views = new ArrayList<>();
 
     /**
      * Builds a new game controller provided a game model.
@@ -26,7 +26,6 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
      */
     public DrawNumberControllerImpl(final DrawNumber model) {
         this.model = model;
-        this.views = new ArrayList<>();
     }
 
     @Override
