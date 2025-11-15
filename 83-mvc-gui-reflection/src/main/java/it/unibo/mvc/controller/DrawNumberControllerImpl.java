@@ -42,7 +42,7 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
     private void checkExistingView(final DrawNumberView view) {
         for (final DrawNumberView v : this.views) {
             if (v.equals(view)) {
-                throw new IllegalStateException("The view is already set! Multiple views are not supported");
+                throw new IllegalStateException("The view is already set! Cannot set the same view again");
             }
         }
     }
