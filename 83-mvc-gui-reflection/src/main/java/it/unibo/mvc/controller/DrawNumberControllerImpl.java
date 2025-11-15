@@ -51,7 +51,6 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
         for (final DrawNumberView v : this.views) {
             Objects.requireNonNull(v, "There is no view attached!").result(model.attempt(n));
         }
-        
     }
 
     @Override

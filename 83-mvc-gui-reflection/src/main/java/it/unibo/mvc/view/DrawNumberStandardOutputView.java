@@ -4,28 +4,40 @@ import it.unibo.mvc.api.DrawNumberController;
 import it.unibo.mvc.api.DrawNumberView;
 import it.unibo.mvc.api.DrawResult;
 
-public class DrawNumberStandardOutputView implements DrawNumberView {
+/**
+ * 
+ */
+public final class DrawNumberStandardOutputView implements DrawNumberView {
     private DrawNumberController controller;
 
+    /**
+     * 
+     */
     @Override
-    public void setController(DrawNumberController observer) {
+    public void setController(final DrawNumberController observer) {
         this.controller = observer;
     }
 
+    /**
+     * 
+     */
     @Override
     public void start() {
-        
+
     }
 
+    /**
+     * 
+     */
     @Override
-    public void result(DrawResult res) {
+    public void result(final DrawResult res) {
         if (res == DrawResult.YOURS_HIGH || res == DrawResult.YOURS_LOW) {
-            System.out.println(res.getDescription());
+            System.out.println(res.getDescription()); //NOPMD
             return;
         } else if (res == DrawResult.YOU_WON) {
-            System.out.println(res.getDescription() + " a new game starts!");
+            System.out.println(res.getDescription() + " a new game starts!"); //NOPMD
         } else {
-            System.out.println(res.getDescription() + ": Lost!");
+            System.out.println(res.getDescription() + ": Lost!"); //NOPMD
         }
         this.controller.resetGame();
     }
