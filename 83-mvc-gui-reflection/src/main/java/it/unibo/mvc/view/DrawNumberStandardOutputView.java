@@ -9,8 +9,9 @@ import it.unibo.mvc.api.DrawResult;
  */
 public final class DrawNumberStandardOutputView implements DrawNumberView {
     private DrawNumberController controller;
+
     /**
-     * 
+     * The constructor of the class needed to make a new object.
      */
     public DrawNumberStandardOutputView() {
         /*
@@ -18,17 +19,11 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
          */
     }
 
-    /**
-     * 
-     */
     @Override
     public void setController(final DrawNumberController observer) {
        this.controller = observer;
     }
 
-    /**
-     * 
-     */
     @Override
     public void start() {
         /*
@@ -36,9 +31,6 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
          */
     }
 
-    /**
-     * 
-     */
     @Override
     public void result(final DrawResult res) {
         System.out.println(res.getDescription()); //NOPMD
@@ -46,5 +38,4 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
             controller.resetGame();
         }
     }
-
 }
