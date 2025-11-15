@@ -33,10 +33,8 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
         Objects.requireNonNull(view, "Cannot set a null view");
         checkExistingView(view);
         this.views.add(view);
-        for (final DrawNumberView v : this.views) {
-            v.setController(this);
-            v.start();
-        }
+        view.setController(this);
+        view.start();
     }
 
     private void checkExistingView(final DrawNumberView view) {
