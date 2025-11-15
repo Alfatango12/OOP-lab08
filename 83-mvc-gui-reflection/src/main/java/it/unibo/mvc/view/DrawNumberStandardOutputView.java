@@ -8,6 +8,7 @@ import it.unibo.mvc.api.DrawResult;
  * 
  */
 public final class DrawNumberStandardOutputView implements DrawNumberView {
+    
     public void DrawNumberControllerImpl() {
         
     }
