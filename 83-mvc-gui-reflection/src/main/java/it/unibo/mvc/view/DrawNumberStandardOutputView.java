@@ -8,14 +8,16 @@ import it.unibo.mvc.api.DrawResult;
  * 
  */
 public final class DrawNumberStandardOutputView implements DrawNumberView {
-    private DrawNumberController controller;
+    public void DrawNumberControllerImpl() {
+        
+    }
 
     /**
      * 
      */
     @Override
     public void setController(final DrawNumberController observer) {
-        this.controller = observer;
+        
     }
 
     /**
@@ -31,15 +33,7 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
      */
     @Override
     public void result(final DrawResult res) {
-        if (res == DrawResult.YOURS_HIGH || res == DrawResult.YOURS_LOW) {
-            System.out.println(res.getDescription()); //NOPMD
-            return;
-        } else if (res == DrawResult.YOU_WON) {
-            System.out.println(res.getDescription() + " a new game starts!"); //NOPMD
-        } else {
-            System.out.println(res.getDescription() + ": Lost!"); //NOPMD
-        }
-        this.controller.resetGame();
+        System.out.println(res.getDescription());
     }
 
 }
