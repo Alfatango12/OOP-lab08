@@ -8,7 +8,7 @@ import it.unibo.mvc.api.DrawResult;
  * 
  */
 public final class DrawNumberStandardOutputView implements DrawNumberView {
-
+    private DrawNumberController controller;
     /**
      * 
      */
@@ -23,9 +23,7 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
      */
     @Override
     public void setController(final DrawNumberController observer) {
-        /*
-         * There is no controller since this view is output only.
-         */
+       this.controller = observer;
     }
 
     /**
@@ -44,6 +42,9 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
     @Override
     public void result(final DrawResult res) {
         System.out.println(res.getDescription()); //NOPMD
+        if (controller != null && (res == DrawResult.YOU_LOST || res == DrawResult.YOU_WON)) {
+            controller.resetGame();
+        }
     }
 
 }
