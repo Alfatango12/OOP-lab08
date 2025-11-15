@@ -8,9 +8,12 @@ import it.unibo.mvc.api.DrawResult;
  * 
  */
 public final class DrawNumberStandardOutputView implements DrawNumberView {
-    
-    public void DrawNumberControllerImpl() {
-        
+
+    /**
+     * 
+     */
+    public DrawNumberStandardOutputView() {
+
     }
 
     /**
@@ -18,7 +21,7 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
      */
     @Override
     public void setController(final DrawNumberController observer) {
-        
+
     }
 
     /**
@@ -34,7 +37,7 @@ public final class DrawNumberStandardOutputView implements DrawNumberView {
      */
     @Override
     public void result(final DrawResult res) {
-        System.out.println(res.getDescription());
+        System.out.println(res.getDescription()); //NOPMD
     }
 
 }
