@@ -140,7 +140,8 @@ public final class DeathNoteImpl implements DeathNote {
         private String deathDetails;
 
         /**
-         * 
+         * The constructor of the death class.
+         * Creates a new death object with default values.
          */
         public Death() {
             this.deathCause = DEFAULT_DEATH_CAUSE;
